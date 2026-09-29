@@ -2,20 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Pavithran</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-white text-neutral-900 antialiased">
+<body class="bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100 transition-colors">
 
   <!-- Sticky Nav -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-200">
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-200 dark:bg-neutral-950/80 dark:border-neutral-800">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-[80px] py-4">
-      <a href="index.html" class="font-semibold tracking-tight text-lg text-black">Pavithran</a>
-      <div class="flex gap-8 text-sm font-medium">
+      <a href="index.html" class="font-semibold tracking-tight text-lg text-black dark:text-white">Pavithran</a>
+      <div class="flex items-center gap-6 text-sm font-medium">
         <a href="index.html" class="hover:text-[var(--color-primary)] transition-colors">Work</a>
         <a href="contact.html" class="hover:text-[var(--color-primary)] transition-colors">About</a>
+        <button id="theme-toggle" type="button" aria-label="Toggle theme"
+          class="rounded-full p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+          </svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+        </button>
       </div>
     </nav>
   </header>
@@ -23,16 +46,20 @@
   <!-- About Me -->
   <section class="max-w-3xl mx-auto px-[80px] pt-24 pb-16">
     <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-6">About Me</h1>
-    <p class="text-neutral-600 leading-relaxed">
+    <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
       I'm a UI/UX designer with 4 years of experience crafting clean, user-centered
       digital products. I care about the details that make an interface feel
       effortless — clear hierarchy, thoughtful motion, and design systems that scale.
       When I'm not designing, I'm exploring new tools and sharpening my craft.
     </p>
+    <a href="https://drive.google.com/file/d/1QcMRR42RbXHFN1tpl5klsEAUhSQST2IN/view?usp=sharing" target="_blank" rel="noopener"
+      class="inline-block mt-6 rounded-full bg-black text-white px-6 py-2.5 text-sm font-medium hover:bg-[var(--color-primary)] dark:bg-white dark:text-black dark:hover:bg-[var(--color-primary)] dark:hover:text-white transition-colors">
+      View Resume
+    </a>
   </section>
 
   <!-- Experience -->
-  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200">
+  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200 dark:border-neutral-800">
     <h2 class="text-sm font-medium uppercase tracking-widest text-neutral-400 mb-8">Experience</h2>
     <div class="space-y-12">
       <div>
@@ -40,8 +67,8 @@
           <h3 class="font-medium">Visual Designer</h3>
           <span class="text-sm text-neutral-400 whitespace-nowrap">Aug 2025 — Present</span>
         </div>
-        <p class="text-sm text-neutral-500 mt-1">Zopping Technology Pvt. Ltd. · Bangalore</p>
-        <ul class="text-sm text-neutral-500 mt-3 w-full space-y-1.5 list-disc list-inside">
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Zopping Technology Pvt. Ltd. · Bangalore</p>
+        <ul class="text-sm text-neutral-500 dark:text-neutral-400 mt-3 w-full space-y-1.5 list-disc list-inside">
           <li>Designed an end-to-end e-commerce aggregation platform, developing a scalable design system with reusable components, styles, and design tokens across 15+ merchant storefronts, improving design consistency and reducing repetitive design work.</li>
           <li>Leveraged AI-assisted design tools to accelerate design iterations and improve workflow efficiency.</li>
           <li>Designed endless aisle kiosk interfaces to improve in-store product discovery and user engagement.</li>
@@ -59,8 +86,8 @@
           <h3 class="font-medium">UI/UX Designer Intern</h3>
           <span class="text-sm text-neutral-400 whitespace-nowrap">Mar 2025 — Apr 2025</span>
         </div>
-        <p class="text-sm text-neutral-500 mt-1">Smarter.codes · Remote</p>
-        <ul class="text-sm text-neutral-500 mt-3 w-full space-y-1.5 list-disc list-inside">
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Smarter.codes · Remote</p>
+        <ul class="text-sm text-neutral-500 dark:text-neutral-400 mt-3 w-full space-y-1.5 list-disc list-inside">
           <li>Designed a sustainability-focused mobile application, improving the clarity of product insights and contributing to a 20% increase in user comprehension.</li>
           <li>Created user flows, wireframes, and interactive prototypes for features including ingredient scanning and product scoring.</li>
           <li>Iteratively improved key user flows, reducing user confusion by 20%.</li>
@@ -73,8 +100,8 @@
           <h3 class="font-medium">System Engineer</h3>
           <span class="text-sm text-neutral-400 whitespace-nowrap">Dec 2021 — Jun 2024</span>
         </div>
-        <p class="text-sm text-neutral-500 mt-1">Tata Consultancy Services (TCS) · Bangalore</p>
-        <ul class="text-sm text-neutral-500 mt-3 w-full space-y-1.5 list-disc list-inside">
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Tata Consultancy Services (TCS) · Bangalore</p>
+        <ul class="text-sm text-neutral-500 dark:text-neutral-400 mt-3 w-full space-y-1.5 list-disc list-inside">
           <li>Contributed to software quality and reliability initiatives, achieving a reported 90% reduction in production defects through testing and issue resolution.</li>
           <li>Conducted User Acceptance Testing (UAT) to validate product functionality against user and business requirements.</li>
           <li>Identified usability issues and contributed to improvements in user workflows and product experience.</li>
@@ -87,13 +114,13 @@
   </section>
 
   <!-- Education -->
-  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200">
+  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200 dark:border-neutral-800">
     <h2 class="text-sm font-medium uppercase tracking-widest text-neutral-400 mb-8">Education</h2>
     <div class="space-y-10">
       <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
         <div>
           <h3 class="font-medium">B.Tech — Information Technology</h3>
-          <p class="text-sm text-neutral-500">Sethu Institute of Technology · CGPA: 7.81/10</p>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400">Sethu Institute of Technology · CGPA: 7.81/10</p>
         </div>
         <span class="text-sm text-neutral-400 whitespace-nowrap">2017 — 2021</span>
       </div>
@@ -101,9 +128,9 @@
   </section>
 
   <!-- Certifications -->
-  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200">
+  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200 dark:border-neutral-800">
     <h2 class="text-sm font-medium uppercase tracking-widest text-neutral-400 mb-8">Certifications</h2>
-    <ul class="text-sm text-neutral-500 space-y-2 list-disc list-inside">
+    <ul class="text-sm text-neutral-500 dark:text-neutral-400 space-y-2 list-disc list-inside">
       <li>Figma UI/UX Design Advanced — Udemy</li>
       <li>Figma UI/UX Design Essentials — Udemy</li>
       <li>User Experience Design Essentials – Adobe XD — Udemy</li>
@@ -112,50 +139,51 @@
   </section>
 
   <!-- Skills -->
-  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200">
+  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200 dark:border-neutral-800">
     <h2 class="text-sm font-medium uppercase tracking-widest text-neutral-400 mb-8">Skills</h2>
     <div class="space-y-6">
       <div>
         <h3 class="font-medium mb-2">UX Research &amp; Analysis</h3>
-        <p class="text-sm text-neutral-500">Usability Testing, User Personas, Competitive Analysis, Market Research, User Pain Points</p>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">Usability Testing, User Personas, Competitive Analysis, Market Research, User Pain Points</p>
       </div>
       <div>
         <h3 class="font-medium mb-2">UI/UX Design</h3>
-        <p class="text-sm text-neutral-500">Web Design, Mobile App Design, Wireframing, Prototyping, User Flows, Design Thinking, Design Systems, Visual Design</p>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">Web Design, Mobile App Design, Wireframing, Prototyping, User Flows, Design Thinking, Design Systems, Visual Design</p>
       </div>
       <div>
         <h3 class="font-medium mb-2">Design Tools</h3>
-        <p class="text-sm text-neutral-500">Figma, Adobe XD, Adobe Photoshop, Adobe Illustrator, Canva</p>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">Figma, Adobe XD, Adobe Photoshop, Adobe Illustrator, Canva</p>
       </div>
       <div>
         <h3 class="font-medium mb-2">Testing &amp; QA</h3>
-        <p class="text-sm text-neutral-500">Functional Testing, Regression Testing, User Acceptance Testing (UAT), Bug Reporting, A/B Testing</p>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">Functional Testing, Regression Testing, User Acceptance Testing (UAT), Bug Reporting, A/B Testing</p>
       </div>
       <div>
         <h3 class="font-medium mb-2">Collaboration</h3>
-        <p class="text-sm text-neutral-500">Agile Methodologies, Cross-functional Collaboration, Stakeholder Communication, Developer Handoff</p>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">Agile Methodologies, Cross-functional Collaboration, Stakeholder Communication, Developer Handoff</p>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200 text-center">
-    <p class="text-sm text-neutral-500 mb-2">Want to work together?</p>
+  <section class="max-w-3xl mx-auto px-[80px] py-16 border-t border-neutral-200 dark:border-neutral-800 text-center">
+    <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-2">Want to work together?</p>
     <a href="mailto:pavirajagopal2000@gmail.com" class="font-medium hover:text-[var(--color-primary)] transition-colors">
       pavirajagopal2000@gmail.com
     </a>
     <a href="tel:+919488029833" class="block font-medium mt-1 hover:text-[var(--color-primary)] transition-colors">
       +91 94880 29833
     </a>
-    <div class="flex justify-center gap-6 text-sm text-neutral-500 pt-4">
+    <div class="flex justify-center gap-6 text-sm text-neutral-500 dark:text-neutral-400 pt-4">
       <a href="https://www.linkedin.com/in/pavithran-r-4a3026222/" target="_blank" rel="noopener" class="hover:text-[var(--color-primary)] transition-colors">LinkedIn</a>
       <a href="https://www.behance.net/pavithranr3" target="_blank" rel="noopener" class="hover:text-[var(--color-primary)] transition-colors">Behance</a>
     </div>
   </section>
 
-  <footer class="border-t border-neutral-200 py-8 text-center text-sm text-neutral-400">
+  <footer class="border-t border-neutral-200 dark:border-neutral-800 py-8 text-center text-sm text-neutral-400">
     © 2026 Pavithran. All rights reserved.
   </footer>
 
+  <script src="theme.js"></script>
 </body>
 </html>

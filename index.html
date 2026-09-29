@@ -2,20 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pavithran — UI/UX Designer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-white text-neutral-900 antialiased">
+<body class="bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100 transition-colors">
 
   <!-- Sticky Nav -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-200">
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-200 dark:bg-neutral-950/80 dark:border-neutral-800">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-[80px] py-4">
-      <a href="index.html" class="font-semibold tracking-tight text-lg text-black">Pavithran</a>
-      <div class="flex gap-8 text-sm font-medium">
+      <a href="index.html" class="font-semibold tracking-tight text-lg text-black dark:text-white">Pavithran</a>
+      <div class="flex items-center gap-6 text-sm font-medium">
         <a href="index.html" class="hover:text-[var(--color-primary)] transition-colors">Work</a>
         <a href="contact.html" class="hover:text-[var(--color-primary)] transition-colors">About</a>
+        <button id="theme-toggle" type="button" aria-label="Toggle theme"
+          class="rounded-full p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+          </svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+        </button>
       </div>
     </nav>
   </header>
@@ -23,64 +46,69 @@
   <!-- Hero -->
   <section class="max-w-5xl mx-auto px-[80px] py-32 text-center">
     <h1 id="hero-text" class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight"></h1>
+    <a href="https://drive.google.com/file/d/1QcMRR42RbXHFN1tpl5klsEAUhSQST2IN/view?usp=sharing" target="_blank" rel="noopener"
+      class="inline-block mt-8 rounded-full bg-black text-white px-6 py-2.5 text-sm font-medium hover:bg-[var(--color-primary)] dark:bg-white dark:text-black dark:hover:bg-[var(--color-primary)] dark:hover:text-white transition-colors">
+      View Resume
+    </a>
   </section>
 
   <!-- Case Studies -->
   <section class="max-w-7xl mx-auto px-[80px] pb-32">
     <h2 class="text-sm font-medium uppercase tracking-widest text-neutral-400 mb-8">Case Studies</h2>
     <div class="grid sm:grid-cols-2 gap-6">
-      <a href="#" class="group block rounded-2xl overflow-hidden border border-neutral-200 hover:border-[var(--color-primary)] transition-colors">
+      <a href="https://www.figma.com/design/6MlKwtJ4QUPRLAHjMRsDfn/Build-Your-Own-Vegetable-Basket?node-id=4-12582&t=ubsiKeDPUCn4pzrF-1" target="_blank" rel="noopener" class="group block rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:border-[var(--color-primary)] transition-colors">
         <div class="aspect-[16/9] overflow-hidden">
           <img src="BYOB_thumbnaill.jpeg" alt="BYOB" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
         </div>
         <div class="p-4">
           <h3 class="font-medium">BYOB</h3>
-          <p class="text-sm text-neutral-500 mt-1">Web design · Website</p>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Web design · Website</p>
         </div>
       </a>
-      <a href="#" class="group block rounded-2xl overflow-hidden border border-neutral-200 hover:border-[var(--color-primary)] transition-colors">
+      <a href="https://www.figma.com/design/bWKPO1CFpdKQ83cCKN6cho/Kiosk-Machine?node-id=2002-748&t=uR9XDVmXVOVLy2BZ-1" target="_blank" rel="noopener" class="group block rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:border-[var(--color-primary)] transition-colors">
         <div class="aspect-[16/9] overflow-hidden">
           <img src="endless_aisle_kiosk_thumbnaill.jpeg" alt="Endless Aisle Kiosk" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
         </div>
         <div class="p-4">
           <h3 class="font-medium">Endless Aisle Kiosk</h3>
-          <p class="text-sm text-neutral-500 mt-1">Kiosk design · Retail</p>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Kiosk design · Retail</p>
         </div>
       </a>
-      <a href="#" class="group block rounded-2xl overflow-hidden border border-neutral-200 hover:border-[var(--color-primary)] transition-colors">
+      <a href="https://www.figma.com/design/KG19EA6Jr7TRoTj0eQnWm8/Smart-POS?node-id=1-4&t=znJVr9EcvpUEHV7Z-1" target="_blank" rel="noopener" class="group block rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:border-[var(--color-primary)] transition-colors">
         <div class="aspect-[16/9] overflow-hidden">
           <img src="pos_device_thumbnaill.jpeg" alt="POS Device" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
         </div>
         <div class="p-4">
           <h3 class="font-medium">POS Device</h3>
-          <p class="text-sm text-neutral-500 mt-1">Product design · Hardware UI</p>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Product design · Hardware UI</p>
         </div>
       </a>
-      <a href="#" class="group block rounded-2xl overflow-hidden border border-neutral-200 hover:border-[var(--color-primary)] transition-colors">
+      <a href="https://www.figma.com/design/RAN6ZNwUQAYglFAeO3FlDU/Zavora?node-id=5-5&t=0J4YN5mloJUsoao2-1" target="_blank" rel="noopener" class="group block rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:border-[var(--color-primary)] transition-colors">
         <div class="aspect-[16/9] overflow-hidden">
           <img src="restaurant_theme_thumbnaill.png" alt="Restaurant Theme" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
         </div>
         <div class="p-4">
           <h3 class="font-medium">Restaurant Theme</h3>
-          <p class="text-sm text-neutral-500 mt-1">UI design · Restaurant platform</p>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">UI design · Restaurant platform</p>
         </div>
       </a>
-      <a href="#" class="group block rounded-2xl overflow-hidden border border-neutral-200 hover:border-[var(--color-primary)] transition-colors sm:col-span-2">
+      <a href="https://www.figma.com/design/NgLWyJZtKwOP2vXYK3OMs8/Game-selling-app?node-id=639-2774&t=D2Bb5oxjK3EFITOs-1" target="_blank" rel="noopener" class="group block rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:border-[var(--color-primary)] transition-colors sm:col-span-2">
         <div class="aspect-[21/9] overflow-hidden">
           <img src="playnix_thumbnaill.png" alt="Playnix" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
         </div>
         <div class="p-4">
           <h3 class="font-medium">Playnix</h3>
-          <p class="text-sm text-neutral-500 mt-1">Product design · Gaming platform</p>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Product design · Gaming platform</p>
         </div>
       </a>
     </div>
   </section>
 
-  <footer class="border-t border-neutral-200 py-8 text-center text-sm text-neutral-400">
+  <footer class="border-t border-neutral-200 dark:border-neutral-800 py-8 text-center text-sm text-neutral-400">
     © 2026 Pavithran. All rights reserved.
   </footer>
 
+  <script src="theme.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
